@@ -1,0 +1,61 @@
+
+    {{#with item}}
+            <div class="card">
+                <div class="card-body p-4 ">
+                        <div class="text-center fotoCont">
+                            <h3 class="fw-bolder"> {{this.title}}</h3>
+                            <div class="star d-flex justify-content-center small text-warning mb-2 ">
+                                <div class="foto"><img src="{{this.image}}" alt="se esperaba una imagen" class="img-fluid rounded-1"></div>
+                            </div>
+                                <h4>PRECIO: ${{this.price}} .-</h4>
+                                <h5>Stock disponible {{this.count}} unidades</h5>
+                                <div class="card-text justify-content-center">
+                                      <p class="">{{this.description}}</p>
+                                </div>
+                        </div>
+                </div>
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center"> 
+                        <p id="jsonItem" class="">{      
+                                                "id": {{this.id}} ,
+                                                "title": "{{this.title}}",
+                                                "price": {{this.price}},
+                                                "description": "{{this.description}}",
+                                                "image": "{{this.image}}",
+                                                "active": {{this.active}},
+                                                "count": {{this.count}} 
+                                        }</p>
+                        <form class="" onsubmit="return addProduct(this)" >
+
+                        </form>
+                        <form action="/app/carrito" method="POST"> 
+                                                    <fieldset class="formulario">
+                                <legend class="formTit">req.body</legend>
+                                <label class="FormItem" for="name">ID</label>
+                                <input class="FormItem" type="number" name="id" id="id" value="{{this.id}}">
+                                <label class="FormItem" for="name">Título</label>
+                                <input class="FormItem" type="text" name="title" id="title" value="{{this.title}}">
+                                <label class="FormItem" for="price">Precio</label>
+                                <input class="FormItem" type="number" name="price" id="price" value="{{this.price}}"> 
+                                <label class="FormItem" for="description">Descripción</label>
+                                <input class="FormItem" type="text" name="description" id="description" value="{{this.description}}">
+                                <label class="FormItem" for="count">Stock</label>
+                                <input class="FormItem" type="text" name="count" id="count" value="{{this.count}}">
+                                <label class="FormItem" for="image">Imagen</label>
+                                <input class="FormItem" type="url" name="image" id="image" value="{{this.image}}">
+                                <label class="FormItem" for="active">Activo=1 / Inactivo=0</label>
+                                <input class="FormItem" type="text" name="active" id="active" value="{{this.active}}">
+          
+                            </fieldset>    
+                                <button id="btn-${article.id}" class="btn btn-outline-dark mt-auto">   
+                                    Agregar al carrito
+                                </button>
+                        </form>
+                    </div>
+                </div>
+            </div>  
+    {{/with}}
+
+
+
+

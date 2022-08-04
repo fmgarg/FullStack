@@ -1,0 +1,29 @@
+[33mcommit 21f7d0ec7ee612acc358996fa48002cbcae4f0b0[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Francisco Gonzalez <fmgarg@gmail.com>
+Date:   Sat Aug 14 14:37:52 2021 -0300
+
+    quité las pruebas de git y sume las carpetas descargadas de bootstrap
+
+[33mcommit 0152ebbe7a581a605351fd3ff602768f5ef540a0[m[33m ([m[1;32mnueva-rama[m[33m)[m
+Author: Francisco Gonzalez <fmgarg@gmail.com>
+Date:   Tue Aug 10 20:02:56 2021 -0300
+
+    Agregando un título a mi index.html
+
+[33mcommit 985483024c9977ed3f09ad8e96124188019439c2[m
+Author: Francisco Gonzalez <fmgarg@gmail.com>
+Date:   Tue Aug 10 19:59:52 2021 -0300
+
+    Agregando texto al html
+
+[33mcommit 688f12189c07703c57878121a2c614e2c549c08d[m[33m ([m[1;32mmi-rama[m[33m, [m[1;32ml-[m[33m, [m[1;32mcheckout[m[33m)[m
+Author: Francisco Gonzalez <fmgarg@gmail.com>
+Date:   Sat Aug 7 12:57:50 2021 -0300
+
+    versión 2.01 sume fondo con gradiente al form en contact y supplier
+
+[33mcommit 114ca1b54c68929ced578ae9bf6cc72744a0e55f[m
+Author: Francisco Gonzalez <fmgarg@gmail.com>
+Date:   Sat Aug 7 11:58:30 2021 -0300
+
+    versión 2.0

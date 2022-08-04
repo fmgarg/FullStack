@@ -1,0 +1,40 @@
+    <section>
+        <div id="accordion">
+             <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Formulario de ingreso de productos. Hacé click para ingresar.
+                        </button>
+                        </h5>
+                    </div>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion" style="">
+                        <div class="card-body">
+                                    <form class="formContact" onsubmit="return addProduct(this)" >
+                                        <fieldset class="formulario">
+                                            <legend class="formTit">Ingresa tu producto aquí</legend>
+                                            <label class="FormItem" for="name">ID</label>
+                                            <input class="FormItem" type="number" name="id" id="id">
+                                            <label class="FormItem" for="name">Título</label>
+                                            <input class="FormItem" type="text" name="title" id="title">
+                                            <label class="FormItem" for="price">Precio</label>
+                                            <input class="FormItem" type="number" name="price" id="price"> 
+                                            <label class="FormItem" for="description">Descripción</label>
+                                            <input class="FormItem" type="text" name="description" id="description">
+                                            <label class="FormItem" for="category">Categoría</label>
+                                            <input class="FormItem" type="text" name="category" id="category">
+                                            <label class="FormItem" for="count">Stock</label>
+                                            <input class="FormItem" type="text" name="count" id="count">
+                                            <label class="FormItem" for="image">Imagen</label>
+                                            <input class="FormItem" type="url" name="image" id="image">
+                                            <label class="FormItem" for="active">Activo=1 / Inactivo=0</label>
+                                            <input class="FormItem" type="text" name="active" id="active" value="1">
+                                            <input class="btn btn-primary" type="submit" value="Enviar"/>            
+                                        </fieldset>
+                                    </form>
+                        </div>
+                    </div>
+            </div>
+
+        </div>
+    </section>

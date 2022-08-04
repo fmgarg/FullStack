@@ -1,0 +1,25 @@
+    <section>
+
+                <div id="accordion">
+             <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                        CHAT. Hacé click para ingresar.
+                        </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion" style="">
+                        <div class="card-body">
+                                <div id="mensajes"></div>
+                                <form onsubmit="return addMessage(this)">
+                                <input type="email" id="username" placeholder="Tu email" />
+                                <input type="text" id="texto" placeholder="Cuéntanos algo..." />
+                                <input type="submit" value="Enviar" />
+                                </form>
+                        </div>
+                    </div>
+            </div>
+
+        </div>
+    </section>

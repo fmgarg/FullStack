@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head class="aboutusHead"><!--bloque 1 BEM-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title class="aboutusHead__titulo">DeTito.com: Sobre nosotros</title>
+    <!--Aplicando SEO-->
+    <meta name="description" content="Somos detodo.com tu tienda on line. Acerca de nosotros.">
+    <meta name="keywords"  content="mision, vision, valores, seguridad, ahorros, descuentos">
+    <!--Fuente de google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap" rel="stylesheet">
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!--Mi hoja de estilos-->
+    <link rel="stylesheet" type="text/css" href="../styles/index.css">
+</head>
+<body class="aboutusBody">
+    <header class="aboutusHeader"><!--bloque 2 BEM-->
+        <div class="encabezado justify-content-center ">
+            <div class="headerTitulo one">
+                  <h1>DeTito.com</h1>
+            </div>
+            <div class="Desktop two">
+               <input type="search" placeholder="buscar productos y servicios..." size="68%">
+            </div>
+            <div class="Mobile three">
+               <input type="search" placeholder="buscar productos y servicios...">
+            </div>
+            <div class="d-flex four"> <!--Carrito del bootstrap theme-->
+                <a class="btn btn-outline-dark" type="submit" href="../pages/carrito.html">
+                    <h9>Carrito</h9>
+                    <p class="badge bg-dark text-white ms-1 rounded-pill" id="totalPrice"></p>
+                </a>
+            </div>
+        </div>   
+        <nav class="aboutusHeader__nav navbar navbar-expand-lg navbar-light"> <!--nav bar de bootstrap con menú hamburguesa en responsive-->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav navbar-nav-scroll">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">Inicio<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../pages/Aboutus.html">Acerca de nosotros<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="../pages/merchandise.html" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                            Productos y servicios
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                            <li><a class="dropdown-item" href="../pages/merchandise.html">Electrodomésticos</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="../pages/merchandise.html">Bazar</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="../pages/merchandise.html">Muebles</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="../pages/merchandise.html">Envíos</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="../pages/merchandise.html">Servicios</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../pages/contact.html">Contactenos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../pages/supplier.html" tabindex="-1" aria-disabled="true">Proveedores</a>
+                        </li>
+                    </ul>
+            </div>
+      </nav> 
+    </header>  
+    <section class="aboutusSection aboutus"><!--bloque 3 BEM-->  
+            <div class="container">
+                <div class="row mt-3 pt-5 pb-5">
+                    <div class="col">
+                        <h2 class="mb-5 slogan">Somos una Startup dedicada a la comercialización de productos y servicios de calidad al mejor precio del mercado.</h2>
+                        <div id="accordion">
+                            <div class="card" id="pedircuit">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    Hacé click acá para conocer nuestra misión, visión y valores
+                                    </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion" style="">
+                                    <div class="card-body">
+                                        <div class="pizarra">
+                                            <article class="aboutusSection__mision mision">
+                                                <h2>Misión</h2>
+                                                <p>Nuestra misión es encontrar soluciones competitivas a precios competitivos.</p>
+                                            </article>
+                                            <article class="aboutusSection__vision vision">
+                                                <h2>Visión</h2>
+                                                <p>Buscamos ser el mejor proveedor de soluciones del mercado.</p>
+                                            </article>
+                                            <article class="aboutusSection__valores valores">
+                                                <h2>Valores</h2>
+                                                <p>Nuestro principal valor es la seguridad en sus operaciones. Ofrecemos una plataforma de pagos confiable y segura para proteger a nuestros clientes.</p>
+                                            </article>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="col">
+                            <h3 class="mb-5 preguntasFrec">Respuestas a preguntas frecuentes:</h3>           
+                            <div id="accordion">
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                        ¿Cómo selecciono la mercadería?
+                                        </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion" style="">
+                                        <div class="card-body">
+                                            <p>
+                                            Cuando visualises el/ los ítem de tu interés, tenes que 
+                                            seleccionar en el botón de "agregar" para que dicho 
+                                            productos se incorpore en tu carrito de compras. Cuando
+                                            termines de elegir tus productos debes seleccionar el carrito
+                                            que está junto a la barra de búsqueda para continuar el proceso.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        ¿Cómo es el proceso de compra?
+                                        </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <p>El proceso cuenta con 3 momentos:</p>
+                                            <ol>
+                                            <li>Elección de los productos e incorporación al carrito de compras.</li>
+                                            <li>
+                                                Confirmación de los productos que deses adquirir y elección del método de envío.
+                                            </li>
+                                            <li>
+                                                Elección del medio de pago y pago.
+                                            </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingFour">
+                                        <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        ¿Qué pasa si me arrepiento de la compra?
+                                        </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <p>
+                                            Se aún no se cumplieron 72 hs., te pedimos que busques todos
+                                            los datos de la operación y tengas tu medio de pago a mano, 
+                                            tenes que contactar a uno de nuestros asesores para que proceda 
+                                            a realizar la anulación de la compra.
+                                            Si ya pasaron 72 hs. desde
+                                            que realizaste la compra contacta a un asesor para que te indique
+                                            los pasos a seguir para la anulación y devolución o rechazo de la entrega.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingFive">
+                                        <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                        ¿Cuáles son los medios de pago disponibles?
+                                        </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <p>
+                                            Trabajamos con todos medios electrónicos, depósito, transferencia y todas las
+                                            opciones que brinda mercadopago.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+      <footer class="aboutusFooter footer"><!--bloque 4 BEM-->
+            <p>Copyright © 2021
+                DeTito.com™. Todos los derechos reservados.
+            </p>
+       </footer>
+   <!--Scripts de bootstrap-->
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+   <!--scripts del curso de JS-->
+   <script src="../app/app.js"></script>
+</body>
+</html>

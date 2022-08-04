@@ -1,0 +1,30 @@
+{
+  "name": "proyecto-gonzalez",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "node-sass --include-path scss scss/common.scss styles/common.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
+    "server": "json-server scripts/user.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fmgarg/proyecto-gonzalez.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fmgarg/proyecto-gonzalez/issues"
+  },
+  "homepage": "https://github.com/fmgarg/proyecto-gonzalez#readme",
+  "devDependencies": {
+    "node-sass": "^6.0.1",
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "casual": "^1.6.2",
+    "json-server": "^0.17.0"
+  }
+}

@@ -1,0 +1,439 @@
+/*Aplicando SASS*/
+$fondocolor: black;
+$letracolor: whitesmoke;
+$letra:sans-serif;
+$ancho:100%;
+
+/*Ajustes comunes*/
+body {
+    margin: 10px;
+    padding: auto;}
+
+.indexBody{
+    background-color:$fondocolor;}
+
+
+
+    .headerTitulo{
+            display: block;
+            width: fit-content;
+    }
+    .headerTitulo h1 {
+            font-family: 'Zen Tokyo Zoo', $letra;
+            color:$letracolor;
+            font-size: 36px;
+            text-align: left;
+            border: lime solid 0px;
+            width: auto;
+}
+        
+    .Desktop {
+            font-family:$letra;
+            color:$letracolor;
+            font-size: 24px;
+            text-align: left;
+            border: lime solid 0px;
+            align-self: center;
+            margin-left: 2%;
+}
+
+    .Mobile{
+            font-family:$letra;
+            color:$letracolor;
+            font-size: 24px;
+            text-align: left;
+            border: lime solid 0px;
+            align-self: center;
+            margin-left: 7%;
+    }
+    .d-flex{ /*ícono del carrito de compras de bootstrap*/
+        margin-left: 3%;
+        margin-top: 0.5%;
+        max-width: 40%;
+        background-color: rgba(245, 245, 245, 0);
+    }
+    .btn-outline-dark {
+      color: #f85d03;
+    }
+
+   /*desde aquí para cambiar los estilos del navbar de bootstrap*/
+    .navbar-light .navbar-brand {
+        color: $letracolor;
+        font-size: auto;
+      }
+      
+      .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
+        color: $letracolor;
+        font-size: auto;
+      }
+      
+      .navbar-light .navbar-nav .nav-link {
+        color: $letracolor;
+        font-size: auto;
+      }
+      
+      .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
+        color: $letracolor;
+        font-size: auto;
+      }
+      
+      .navbar-light .navbar-nav .nav-link.disabled {
+        color: $letracolor;
+        font-size: auto;
+      }
+      
+      .navbar-light .navbar-nav .show > .nav-link,
+      .navbar-light .navbar-nav .active > .nav-link,
+      .navbar-light .navbar-nav .nav-link.show,
+      .navbar-light .navbar-nav .nav-link.active {
+        color: $letracolor;
+        font-size: auto;
+      }
+      
+      .navbar-light .navbar-toggler {
+        color: $letracolor;
+        border-color: rgba(0, 0, 0, 0.1);
+        font-size: auto;
+      }
+      
+      
+      .navbar-light .navbar-text {
+        color: $letracolor;
+        font-size: auto;
+      }
+      
+      .navbar-light .navbar-text a {
+        color: $letracolor;
+        font-size: auto;
+      }
+      
+      .navbar-light .navbar-text a:hover, .navbar-light .navbar-text a:focus {
+        color: $letracolor;
+        font-size: auto;
+      }
+      .nav-item{
+        border: solid white 0px;
+        weight: 100%;
+        font-size: 22px;
+      }
+      .collapse{
+        border: solid whitesmoke 0px;
+        
+      }
+      .navbar-light .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(245, 245, 245)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); }
+      
+/*fin de los estilos del navbar/
+
+
+
+/*inicio carousel del index.html*/
+.w-100{
+    max-width: 50%;
+    margin-left: 25%;
+
+}
+.carousel-item{
+    border: solid blueviolet 0px;
+    align-content: center;
+}
+.star{
+  border: solid greenyellow 0px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.text-muted{
+  text-decoration: line-through;
+}
+
+/*fin carousel del index.html*/
+
+
+.btn-whatsapp {
+            animation-duration: 2s;
+            animation-name: aparecer;
+            animation-iteration-count: 1;
+            }
+                    @keyframes aparecer {
+                      0% {
+                        opacity: 0;
+                      }
+                      100% {
+                        opacity: 1;
+                      }
+                    }
+
+                    @keyframes animacion {
+                    from {
+                      transform: skewY(-10deg)
+                      }
+                    to {
+                      transform: skewY(10deg)
+                    }
+                    }
+
+
+.whatsapp {
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:40px;
+  background-color:#25d366;
+  color:#FFF;
+  border-radius:50px;
+  text-align:center;
+  font-size:30px;
+  z-index:100;
+}
+
+.whatsapp-icon {
+  margin-top:13px;
+}
+
+.footer {
+color: $letracolor;
+font-family:$letra;
+font-size: 12px;
+text-align: center;
+display: inline-block;
+bottom: 10px
+}
+
+/*desde acá aplica a la sección de ofertas*/
+.ofertasCalientes{
+  border: solid gray 0px; 
+  text-align: center;
+  color: orangered;
+  animation-duration: 2s;
+            animation-name: aparecer;
+            animation-iteration-count: 5;
+            }
+                    @keyframes aparecer {
+                      0% {
+                        opacity: 0;
+                      }
+                      100% {
+                        opacity: 1;
+                      }
+                    }
+
+/*desde acá aplican a form Newsletter*/
+.box {
+  margin: auto
+}
+
+.heading {
+  font-weight: bold;
+  font-size: 66px
+}
+
+.sub-heading {
+  border-top: 1px solid #E0E0E0;
+  border-bottom: 1px solid #E0E0E0;
+  padding: 8px 0 8px 0;
+  margin-top: 20px;
+  margin-bottom: 35px
+}
+
+.carta {
+  padding: 8%;
+  padding-bottom: 30px;
+  padding-top: 35px;
+  margin-top: 60px;
+  margin-bottom: 80px;
+  background-color: #ffffff;
+  border-radius: 0
+}
+
+textarea[name="message"] {
+  resize: none
+}
+
+#e-mail {
+  height: 45px
+}
+
+#message {
+  height: 120px
+}
+
+input.input-box,
+textarea.input-box {
+  background-color: #e0e0e033;
+  border: #616161;
+  color: #000000;
+  padding: 15px auto 15px auto !important;
+  height: 50px !important
+}
+
+input.input-box:focus,
+textarea.input-box:focus {
+  background-color: #212121;
+  color: #ffffff
+}
+
+.rm-border:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none
+}
+
+form .form-control::-webkit-input-placeholder {
+  color: #9E9E9E
+}
+
+::-moz-placeholder {
+  color: #9E9E9E !important
+}
+
+input.btn-black {
+  background-color: #000000;
+  color: #ffffff;
+  height: 50px
+}
+
+.thanks {
+  color: #000000 !important;
+  text-align: center
+}
+
+
+.conditions {
+  color: #BDBDBD;
+  text-align: center
+}
+
+/*Desde acá aplican aboutus.html*/
+.aboutusBody{
+  background-color:$fondocolor;
+  color: $letracolor;;
+}
+
+.slogan{
+  text-align: center;
+}
+.preguntasFrec{
+  text-align: center;
+  margin-top: 3%;
+}
+
+
+   /*Aplicando operaciones SASS*/         
+ .aboutusSection__mision{
+   width: auto;
+   h2{
+     font-style: italic;
+   }
+ }
+ .aboutusSection__vision{
+   width: auto;
+   h2{
+    font-style: italic;
+  }
+ }
+ .aboutusSection__valores{
+   width: auto
+   h2{
+    font-style: italic;
+  }
+ }
+ .aboutusSection__speech{
+   width: $ancho/3;
+ }
+
+.btn-link{
+  color: $letracolor;
+  font-family: $letra;
+  font-size: 26px;
+}
+
+.aboutusFooter{
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+}
+.cont{
+    text-align: center;
+}
+
+
+/*fin aplica al aboutus.html*/
+
+/*inicio aplican al merchandise.html*/
+.merchandiseBody{
+  background-color:$fondocolor;
+  color: $letracolor;;
+}
+
+.contenedor{
+    display: block;
+    margin-top: 5%;
+}
+    
+    .card {
+    background-color: rgba(245, 245, 245, 0.356);
+    flex: 0 0 200px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+
+    transition: all 1s;
+    z-index: 1;
+    position: relative;}
+    
+    .cards article:hover {
+            position: relative;
+            transform: scale(1.2);
+            z-index: 2;
+    }
+    .card img {
+    max-width: 100%;
+    }
+    .card .text {
+    padding: 0 20px 20px;
+    }
+    .card .text > button {
+    background: rgb(128, 128, 128);
+    border: 0;
+    color:black;
+    padding: 10px;
+    width: 100%;
+    }
+    .btn-whatsapp2 {
+      animation: animacion 0.5s linear 1s 3 alternate;
+      }
+    .btnn{
+      height: 130px;
+    }
+    
+
+/*fin aplican al merchandise.html*/
+
+/*inicio aplican al contact.html*/
+
+.contactBody{
+  background-color:$fondocolor;
+  color: $letracolor;;
+}
+.formContact{
+  background-image: linear-gradient(black, rgba(245, 245, 245, 0.623));           
+    }
+    .formulario{
+      display: block;
+      margin-left: 25%;
+      margin-right: 25%;
+      border: solid whitesmoke 0px;
+    } 
+    .FormItem{
+      width: 100%;
+    }
+/*fin aplican al contact.html*/
+
+/*inicio aplican al supplier.html*/
+.supplierBody{
+  background-color:$fondocolor;
+  color: $letracolor;;
+}
+/*fin aplican al supplier.html*/
