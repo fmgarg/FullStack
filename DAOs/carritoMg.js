@@ -270,13 +270,13 @@ carritoMg.post('/', async (req, res)=>{
   //console.log(req.body)
   //console.log(req.session.passport.user)
 
-  userId = JSON.parse(req.session.passport.user)
+  userId = req.session.passport.user
 
   cartId = {}
   cartId ['cartId'] = req.session.passport.user
   //console.log(cartId)
 
-  let newProduct = await items.save (req.body, cartId, userId)
+  let newProduct = await items.save (req.body)
   //productos.push(req.body)
   res.json({mensaje: 'Se creo un carrito'})
 })
