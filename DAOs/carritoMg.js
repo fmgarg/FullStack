@@ -41,16 +41,16 @@ class Contenedor {
             }
         }
 
-    async save(producto, cartId, userId) {
+    async save(cartItem, cartId, userId) {
         try {
             
             let carritoExiste = await items.getByID (userId)
 
-            console.log(carritoExiste)
+            console.log('el carrito ya existe se debe agregar')//carritoExiste)
 
             if (carritoExiste.length === 0){
                 let cart = {userId, itemsCart : []}
-                cart.itemsCart.push(producto)
+                cart.itemsCart.push(cartItem)
                 //cart ["elementos"] = producto
                 //console.log(cart)
                 productos.push(cart)
@@ -67,9 +67,10 @@ class Contenedor {
 
                 //--------traigo el carrito viejo----------
                 const oldCart = await items.getByID (userId)
+                console.log(oldCart)
                 //--------creo el carrito actualizado con nuevo productos----------
                 const updatedCart = oldCart[0]
-                updatedCart.itemsCart.push (producto)
+                updatedCart.itemsCart.push (cartItem)
                 console.log(updatedCart.itemsCart)
                 
                 //-----------busco el carrito por userId y le sumo el nuevo item/ producto----------
@@ -271,12 +272,12 @@ carritoMg.post('/', async (req, res)=>{
   //console.log(req.session.passport.user)
 
   userId = req.session.passport.user
-
+  cartItem = req.body
   cartId = {}
   cartId ['cartId'] = req.session.passport.user
   //console.log(cartId)
 
-  let newProduct = await items.save (req.body)
+  let newProduct = await items.save (cartItem, cartId, userId)
   //productos.push(req.body)
   res.json({mensaje: 'Se creo un carrito'})
 })
@@ -298,7 +299,8 @@ carritoMg.delete ('/:cartId', async (req, res)=>{
 
 
 // PTO "C" esta ruta lista todos los productos de un id de carrito  
-carritoMg.get ('/:cartId/productos', async (req, res)=>{
+carritoMg.get ('/:cartId/' // '/:cartId/productos'
+    , async (req, res)=>{
     userId = JSON.parse(req.params.cartId)
     //console.log(number)
     let product = await items.getByID(userId)

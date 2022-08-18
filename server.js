@@ -152,9 +152,10 @@ async function getAll (){
 //------------------PROMESAS CON NODE-FETCH----------------------------//
 let productos = []
 
-asyncCall().catch(err => {
-  console.log(err);
-  });
+asyncCall()
+            .catch(err => {
+                  console.log(err);
+            });
 
 async function asyncCall() {
   let items = await fetch(`http://localhost:8080/app/productos/landing`
