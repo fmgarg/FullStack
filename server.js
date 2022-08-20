@@ -463,8 +463,10 @@ if (MODO === 'CLUSTER' && cluster.isPrimary) {
                           
 
                           const id = req.session.passport['user']
+                          console.log(id)
 
                           const user = await User.findById (id)
+                          console.log(user)
                             
                           const userLogin = {user:{}}
                           userLogin['user']= user.nombre
