@@ -212,9 +212,10 @@ const items = new Contenedor ('productos.json');
 
 //Pto "A" esta ruta permite listar todos los productos 
 productosMg.get ('/', async (req, res)=>{
-    let products = await items.getAll()
-    fakeApi = ()=> products
-    //console.log(req.session.cookie.maxAge)
+   // let products = await items.getAll()
+   // fakeApi = ()=> products
+    console.log(req.session.cookie.maxAge)
+    console.log(req.session.passport)
     if(req.session.cookie.maxAge>=1){
         res.render('home')//, {suggestedChamps: fakeApi(), listExists: true})
     }else{
@@ -227,6 +228,20 @@ productosMg.get ('/landing', async (req, res)=>{
     
     res.send(products)
 })
+
+/*productosMg.get ('/:userId', async (req, res)=>{
+    // let products = await items.getAll()
+    // fakeApi = ()=> products
+     console.log(req.session.cookie.maxAge)
+     console.log(req.session.passport)
+     if(req.session.cookie.maxAge>=1){
+         res.render('home')//, {suggestedChamps: fakeApi(), listExists: true})
+     }else{
+         res.redirect('/login')
+     }
+ })
+*/
+
 
 //Pto "A" esta ruta permite listar un producto por ID 
 productosMg.get ('/:ID'

@@ -1,5 +1,5 @@
 
-const URL = '/app/productos/landing'
+const URL = '/productos/landing'
 
 fetch (URL) 
 
@@ -29,7 +29,7 @@ fetch (URL)
                                         </div>
                                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                             <div class="text-center">      
-                                                <button id="btn-${article.id}" class="btn btn-outline-dark mt-auto" onclick="location.href = '/app/productos/${article.id}'">   
+                                                <button id="btn-${article.id}" class="btn btn-outline-dark mt-auto" onclick="location.href = '/productos/${article.id}'">   
                                                     detalle
                                                 </button>
                                             </div>

@@ -39,36 +39,36 @@ function addMessage(e) {
 
 function renderProductos(data) {
   const html = data
-    .map((elem, index) => {
-      return `                    
-                    <div class="card rounded-3 mb-4">
-                          <div class="card-body p-4">
-                              <div class="row d-flex justify-content-between align-items-center">
-                                  <div class="col-md-2 col-lg-2 col-xl-2">
-                                      <img src="${elem.image}" alt="se esperaba una imagen"
-                                      class="img-fluid rounded-3">
-                                  </div>
-                                  <div class="col-md-3 col-lg-3 col-xl-3">
-                                      <p class="lead fw-normal mb-2">${elem.title}</p>
-                                  </div>
-                                  <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                      <h5 class="mb-0">Precio $${elem.price}.-</h5>
-                                  </div>
-                                  <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                      <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-                                  </div>
-                                  <div class="text-center">      
-                                  <button id="btn-${elem.id}" class="btn btn-outline-dark mt-auto" onclick="location.href = '/app/productos/${elem.id}'">   
-                                      detalle
-                                  </button>
-                              </div>
-                              </div>
-                          </div>
-                    </div>
-            `
+    .map((article, index) => {
+      return `
+      <div class="card">
+          <img class="card-img-top" src="${article.image}" alt="se esperaba una imagen" />
+          <div class="card-body p-4">
+                  <div class="text-center">
+                      <h3 class="fw-bolder"> ${article.title}</h3>
+                      <div class="star d-flex justify-content-center small text-warning mb-2">
+                          <div class="bi-star-fill"></div>
+                          <div class="bi-star-fill"></div>
+                      </div>
+                          <h4>PRECIO: $ ${article.price}.-</h4>
+                          <h5>(Stock disponible ${article.count} unidades)</h5>
+                  </div>
+                  <div class="card-text description">
+                      <p class="text-justify">${article.description}</p>
+                  </div>
+          </div>
+          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+              <div class="text-center">      
+                  <button id="btn-${article.id}" class="btn btn-outline-dark mt-auto" onclick="location.href = '/productos/${article.id}'">   
+                      detalle
+                  </button>
+              </div>
+          </div>
+      </div>
+      `
     })
     .join(' ')
-  document.getElementById('tabla-eventos').innerHTML = html
+  document.getElementById('tabla-productosSocket').innerHTML = html
 }
 
 socket.on('socketProductos', function (data) {
@@ -95,7 +95,7 @@ function renderUser(data) {
     .map((elem, index) => {
       return `
             <a class="btn btn-outline-dark"  type="submit" href="/home">
-                <h9>Carrito de ${elem.user}</h9>
+                <h9>User: ${elem.user}</h9>
                 <p class="badge bg-dark text-white ms-1 rounded-pill" id="totalPrice" ></p>
             </a>
             `
