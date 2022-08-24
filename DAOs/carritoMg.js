@@ -5,6 +5,9 @@ const carritoMg = express.Router ()
 
 const fs = require('fs');
 
+const mongoose = require ('mongoose')
+const User = require ('../models/modelUsers')
+
 const nombreArchivo = 'carrito.json'
 
 let productosNotParse = fs.readFileSync('./carrito.json', 'utf-8')
@@ -262,8 +265,44 @@ const items = new Contenedor ('carrito.json');
 
 //esta ruta lista todos los carritos PTO0
 carritoMg.get ('/', async (req, res)=>{
-    let products = await items.getAll()
-    res.json(products)
+
+/*    let products = await items.getAll()
+    res.json(products)*/ //devuelve json con todos los carritos
+
+    console.log(req.session.cookie.maxAge)
+    console.log(req.session.passport)
+    
+
+    if(req.session.cookie.maxAge>=1){
+         let {userLoggedId} = req.session.passport
+
+        console.log('estoy en ./carrito')
+        res.redirect(`carrito/${userLoggedId}`)
+        //res.render('cart')//, {suggestedChamps: fakeApi(), listExists: true})
+    }else{
+        res.redirect('/login')
+    }
+})
+
+carritoMg.get('/:userID', async (req, res)=>{
+
+    parametros = JSON.stringify(req.params.userID)
+    console.log(parametros)
+
+    console.log('estoy en ./carrito/:userID')
+    console.log(req.params.userID)
+
+    try{
+        
+       // let userFind = await User.findById (req.params.userID)
+        console.log(userFind)
+
+        let userCart = 'faltan save + model + requiere' //Cart.findById(userFind)
+        //res.render('cart', { User })
+    }
+    catch{
+
+    }
 })
 
 // PTO "A" y "D" es para crear un carrito, crear el cartId, y para agregar productos al carrito por su ID de producto.
