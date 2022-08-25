@@ -300,8 +300,11 @@ carritoMg.get('/:userID', async (req, res)=>{
        // console.log(userFind)
 
         let userCart = 'faltan save + model + requiere' //Cart.findById(userFind)
-        res.send('jajajaj')
+        //res.send('jajajaj')
         //res.render('cart', { User })
+
+        let product = await items.getByID(parametros)
+        res.json(product)
     }
     catch{
 
