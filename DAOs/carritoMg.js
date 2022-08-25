@@ -269,12 +269,13 @@ carritoMg.get ('/', async (req, res)=>{
 /*    let products = await items.getAll()
     res.json(products)*/ //devuelve json con todos los carritos
 
-    console.log(req.session.cookie.maxAge)
-    console.log(req.session.passport)
+    //console.log(req.session.cookie.maxAge)
+    //console.log(req.session.passport.user)
     
 
     if(req.session.cookie.maxAge>=1){
-         let {userLoggedId} = req.session.passport
+         let userLoggedId = req.session.passport.user
+         console.log(userLoggedId)
 
         console.log('estoy en ./carrito')
         res.redirect(`carrito/${userLoggedId}`)
@@ -286,18 +287,20 @@ carritoMg.get ('/', async (req, res)=>{
 
 carritoMg.get('/:userID', async (req, res)=>{
 
-    parametros = JSON.stringify(req.params.userID)
+    console.log('estoy en ./carrito/:userID')
+
+    parametros = req.params.userID
     console.log(parametros)
 
-    console.log('estoy en ./carrito/:userID')
-    console.log(req.params.userID)
+       // console.log(req.params.userID)
 
     try{
         
        // let userFind = await User.findById (req.params.userID)
-        console.log(userFind)
+       // console.log(userFind)
 
         let userCart = 'faltan save + model + requiere' //Cart.findById(userFind)
+        res.send('jajajaj')
         //res.render('cart', { User })
     }
     catch{
