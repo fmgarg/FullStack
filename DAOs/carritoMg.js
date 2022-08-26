@@ -60,14 +60,13 @@ class Contenedor {
                 let carritoExiste = await items.getByID (userId)
                 console.log(carritoExiste)
 
-                console.log('el carrito ya existe se debe agregar')//carritoExiste)
-
                 if (carritoExiste.length === 0){
                     let cart = {userId, itemsCart : []}
                     cart.itemsCart.push(cartItem)
+                    console.log('el carrito NO existe, SE CREA CON userID')//carritoExiste)
                     //cart ["elementos"] = producto
                     //console.log(cart)
-                    productos.push(cart)
+                    //productos.push(cart)
                     //console.log(`el nuevo carrito tiene el id ${userId}`)
                     
                     let response = await modelCarrito.insertMany(cart)
@@ -80,11 +79,38 @@ class Contenedor {
                             }
                     })*/
                 }else {                
-                    console.log('este es el else')
+                    console.log('el CART existe se agregan los items')
+                    console.log(cartItem)
 
+                    let id = cartItem['id']
+                    let title = cartItem['title']
+                    let price = cartItem['price']
+                    let description = cartItem['description']
+                    let count = cartItem['count']
+                    let image = cartItem['image']
+                    let active = cartItem['active']
+
+
+                    let response = await modelCarrito.updateOne({userId: userId},{
+                        $push:{
+                                itemsCart:{
+                                            $each:[{
+                                                id:id,
+                                                title:title,
+                                                price:price,
+                                                description:description,
+                                                count:count,
+                                                image:image,
+                                                active:active}]
+                                          }
+                                }}
+                                                            )
+                    return ('se agrego un producto')
+
+                    /*
                     //--------traigo el carrito viejo----------
                     const oldCart = await items.getByID (userId)
-                    console.log(oldCart)
+                    console.log(oldCart.itemsCart)
                     //--------creo el carrito actualizado con nuevo productos----------
                     const updatedCart = oldCart[0]
                     updatedCart.itemsCart.push (cartItem)
@@ -95,16 +121,7 @@ class Contenedor {
                     //console.log(index)
                     productos.splice (index, 1,updatedCart )
                     //console.log(productos)
-                    
-
-                    //----------escribo el file del carrito con la actualizacion------
-                    await fs.writeFile('./carrito.json', JSON.stringify(productos, null, 4), error =>{
-                        if(error){
-                        } else {
-                        console.log("se agrego un producto a su carrito")
-                        }
-                    })
-                    
+                    */
                 }                                                                        
         }
         catch (err) {
