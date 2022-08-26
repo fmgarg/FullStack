@@ -30,68 +30,82 @@ class Contenedor {
         };
 
     async getAll() {
+            const mongoose = require ('mongoose')
+            const modelCarrito = require ('../models/modelCarrito')
+
+            const URL = process.env.MGATLAS//'mongodb://127.0.0.1:27017/ecommerce'
+                    let bddConnect = await mongoose.connect (URL, {
+                        useNewUrlParser: true, 
+                        useUnifiedTopology: true
+                        })
             try {
-
-                if (this.listaProductos !== []) {
-                    //console.log(productosParse)
-                    return productos;
-                } else {
-                    throw 'no hay productos para mostrar'
-                }
-
+                let response = await modelCarrito.find()
+                return response
             } catch (error) {
                 console.log(`Error: ${error}`);
             }
         }
 
     async save(cartItem, cartId, userId) {
-        try {
-            
-            let carritoExiste = await items.getByID (userId)
+            const mongoose = require ('mongoose')
+            const modelCarrito = require ('../models/modelCarrito')
 
-            console.log('el carrito ya existe se debe agregar')//carritoExiste)
-
-            if (carritoExiste.length === 0){
-                let cart = {userId, itemsCart : []}
-                cart.itemsCart.push(cartItem)
-                //cart ["elementos"] = producto
-                //console.log(cart)
-                productos.push(cart)
-                //console.log(`el nuevo carrito tiene el id ${userId}`)
+            const URL = process.env.MGATLAS//'mongodb://127.0.0.1:27017/ecommerce'
+                    let bddConnect = await mongoose.connect (URL, {
+                        useNewUrlParser: true, 
+                        useUnifiedTopology: true
+                        })
+            try {
                 
-                await fs.writeFile('./carrito.json', JSON.stringify(productos, null, 4), error =>{
+                let carritoExiste = await items.getByID (userId)
+                console.log(carritoExiste)
+
+                console.log('el carrito ya existe se debe agregar')//carritoExiste)
+
+                if (carritoExiste.length === 0){
+                    let cart = {userId, itemsCart : []}
+                    cart.itemsCart.push(cartItem)
+                    //cart ["elementos"] = producto
+                    //console.log(cart)
+                    productos.push(cart)
+                    //console.log(`el nuevo carrito tiene el id ${userId}`)
+                    
+                    let response = await modelCarrito.insertMany(cart)
+                    return response
+
+                    /*await fs.writeFile('./carrito.json', JSON.stringify(productos, null, 4), error =>{
+                            if(error){
+                            } else {
+                            console.log("se guardo un nuevo producto.")
+                            }
+                    })*/
+                }else {                
+                    console.log('este es el else')
+
+                    //--------traigo el carrito viejo----------
+                    const oldCart = await items.getByID (userId)
+                    console.log(oldCart)
+                    //--------creo el carrito actualizado con nuevo productos----------
+                    const updatedCart = oldCart[0]
+                    updatedCart.itemsCart.push (cartItem)
+                    console.log(updatedCart.itemsCart)
+                    
+                    //-----------busco el carrito por userId y le sumo el nuevo item/ producto----------
+                    const index = productos.findIndex(item => item.userId === userId)
+                    //console.log(index)
+                    productos.splice (index, 1,updatedCart )
+                    //console.log(productos)
+                    
+
+                    //----------escribo el file del carrito con la actualizacion------
+                    await fs.writeFile('./carrito.json', JSON.stringify(productos, null, 4), error =>{
                         if(error){
                         } else {
-                        console.log("se guardo un nuevo producto.")
+                        console.log("se agrego un producto a su carrito")
                         }
-                })
-            }else {                
-                console.log('este es el else')
-
-                //--------traigo el carrito viejo----------
-                const oldCart = await items.getByID (userId)
-                console.log(oldCart)
-                //--------creo el carrito actualizado con nuevo productos----------
-                const updatedCart = oldCart[0]
-                updatedCart.itemsCart.push (cartItem)
-                console.log(updatedCart.itemsCart)
-                
-                //-----------busco el carrito por userId y le sumo el nuevo item/ producto----------
-                const index = productos.findIndex(item => item.userId === userId)
-                //console.log(index)
-                productos.splice (index, 1,updatedCart )
-                //console.log(productos)
-                
-
-                //----------escribo el file del carrito con la actualizacion------
-                await fs.writeFile('./carrito.json', JSON.stringify(productos, null, 4), error =>{
-                    if(error){
-                    } else {
-                    console.log("se agrego un producto a su carrito")
-                    }
-                })
-                
-            }                                                                        
+                    })
+                    
+                }                                                                        
         }
         catch (err) {
             console.log('no se pudo agregar');
@@ -99,23 +113,41 @@ class Contenedor {
     }
 
     async getByID(userId) {
-        try {
-            let products = await items.getAll()
-            //console.log(products)
-            let buscarProductoXId = products.filter(elem => elem.userId == userId);
-            //console.log(buscarProductoXId)
-            if (buscarProductoXId == null){                
-                console.log('el producto no existe');
-            }else{
-                //console.log(buscarProductoXId);
-                return (buscarProductoXId)
+        const mongoose = require ('mongoose')
+        const modelCarrito = require ('../models/modelCarrito')
+
+        const URL = process.env.MGATLAS//'mongodb://127.0.0.1:27017/ecommerce'
+                let bddConnect = await mongoose.connect (URL, {
+                    useNewUrlParser: true, 
+                    useUnifiedTopology: true
+                    })
+
+            try {
+                let products = await items.getAll()
+                //console.log(products)
+                let buscarProductoXId = products.filter(elem => elem.userId == userId);
+                //console.log(buscarProductoXId)
+                if (buscarProductoXId == null){                
+                    console.log('el producto no existe');
+                }else{
+                    //console.log(buscarProductoXId);
+                    return (buscarProductoXId)
+                }
+            } catch (error) {
+                console.error(`Error: ${error}`);
             }
-        } catch (error) {
-            console.error(`Error: ${error}`);
-        }
     }
 
     async deleteByID(ID, cartId, userId) {
+        const mongoose = require ('mongoose')
+        const modelCarrito = require ('../models/modelCarrito')
+
+        const URL = process.env.MGATLAS//'mongodb://127.0.0.1:27017/ecommerce'
+                let bddConnect = await mongoose.connect (URL, {
+                    useNewUrlParser: true, 
+                    useUnifiedTopology: true
+                    })
+
         try {
             let cart = await items.getByID(cartId)
             
@@ -167,6 +199,14 @@ class Contenedor {
     }
 
     async deleteCartByID(cartId, userId) {
+        const mongoose = require ('mongoose')
+        const modelCarrito = require ('../models/modelCarrito')
+
+        const URL = process.env.MGATLAS//'mongodb://127.0.0.1:27017/ecommerce'
+                let bddConnect = await mongoose.connect (URL, {
+                    useNewUrlParser: true, 
+                    useUnifiedTopology: true
+                    })
         try {
 
             //aca busco el indice del carrito a eliminar
@@ -203,6 +243,14 @@ class Contenedor {
     }
 
     async putByID(ID, newPrice) {
+        const mongoose = require ('mongoose')
+        const modelCarrito = require ('../models/modelCarrito')
+
+        const URL = process.env.MGATLAS//'mongodb://127.0.0.1:27017/ecommerce'
+                let bddConnect = await mongoose.connect (URL, {
+                    useNewUrlParser: true, 
+                    useUnifiedTopology: true
+                    })
         try {
             let products = await items.getAll()
             //console.log(products)
@@ -245,7 +293,16 @@ class Contenedor {
         }
     }
 
-    async deleteAll() { 
+    async deleteAll() {
+        const mongoose = require ('mongoose')
+        const modelCarrito = require ('../models/modelCarrito')
+
+        const URL = process.env.MGATLAS//'mongodb://127.0.0.1:27017/ecommerce'
+                let bddConnect = await mongoose.connect (URL, {
+                    useNewUrlParser: true, 
+                    useUnifiedTopology: true
+                    })
+
         this.listaProductos = [];
         await fs.writeFile('./carrito.json', JSON.stringify(this.listaProductos, null, 4), error =>{
             if(error){
@@ -264,20 +321,11 @@ const items = new Contenedor ('carrito.json');
 //---------------------------------------------------------creacion de las rutas--------------------------------------------------------------------------
 
 //esta ruta lista todos los carritos PTO0
-carritoMg.get ('/', async (req, res)=>{
-
-/*    let products = await items.getAll()
-    res.json(products)*/ //devuelve json con todos los carritos
-
-    //console.log(req.session.cookie.maxAge)
-    //console.log(req.session.passport.user)
-    
+carritoMg.get ('/', async (req, res)=>{    
 
     if(req.session.cookie.maxAge>=1){
-         let userLoggedId = req.session.passport.user
-         console.log(userLoggedId)
-
-        console.log('estoy en ./carrito')
+        let userLoggedId = req.session.passport.user
+        //console.log('estoy en ./carrito')
         res.redirect(`carrito/${userLoggedId}`)
         //res.render('cart')//, {suggestedChamps: fakeApi(), listExists: true})
     }else{
@@ -287,43 +335,26 @@ carritoMg.get ('/', async (req, res)=>{
 
 carritoMg.get('/:userID', async (req, res)=>{
 
-    console.log('estoy en ./carrito/:userID')
-
     parametros = req.params.userID
     console.log(parametros)
-
-       // console.log(req.params.userID)
-
-    try{
-        
-       // let userFind = await User.findById (req.params.userID)
-       // console.log(userFind)
-
-        let userCart = 'faltan save + model + requiere' //Cart.findById(userFind)
-        //res.send('jajajaj')
-        //res.render('cart', { User })
-
-        let product = await items.getByID(parametros)
-        res.json(product)
-    }
-    catch{
-
-    }
+    // let userFind = await User.findById (req.params.userID)
+    // console.log(userFind)
+    let userCart = 'faltan save + model + requiere' //Cart.findById(userFind)
+    //res.send('jajajaj')
+    //res.render('cart', { User })
+    let product = await items.getByID(parametros)
+    res.json(product)
 })
 
 // PTO "A" y "D" es para crear un carrito, crear el cartId, y para agregar productos al carrito por su ID de producto.
 carritoMg.post('/', async (req, res)=>{
-  //console.log(req.body)
-  //console.log(req.session.passport.user)
 
   userId = req.session.passport.user
   cartItem = req.body
   cartId = {}
   cartId ['cartId'] = req.session.passport.user
-  //console.log(cartId)
 
   let newProduct = await items.save (cartItem, cartId, userId)
-  //productos.push(req.body)
   res.json({mensaje: 'Se creo un carrito'})
 })
 
