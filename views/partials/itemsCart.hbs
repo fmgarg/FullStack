@@ -16,7 +16,9 @@
                             <h5 class="mb-0">${{this.price}}</h5>
                         </div>
                         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                            <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                            <form action="/carrito/{{this.cartUserId}}/item/{{this.id}}" method="POST">
+                            <button type="submit" class="btn btnDel btn-outline-dark btn-danger">X</button>
+                            </form>
                         </div>
                         </div>
                     </div>

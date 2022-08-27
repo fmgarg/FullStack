@@ -10,6 +10,7 @@ const modelCarrito = new mongoose.Schema ({
                             count: {type: Number, require: true},
                             image: {type: String, require: true, max: 255},
                             active: {type: Number, require: true},
+                            cartUserId:{type: String, require: true},
                         }]}
 })
 

@@ -67,7 +67,7 @@ class Contenedor {
 
                 }else {                
                     //console.log('el CART existe se agregan los items')
-                    //console.log(cartItem)
+                    console.log(cartItem)
 
                     let id = cartItem['id']
                     let title = cartItem['title']
@@ -76,6 +76,7 @@ class Contenedor {
                     let count = cartItem['count']
                     let image = cartItem['image']
                     let active = cartItem['active']
+                    let cartUserId = cartItem['cartUserId'] 
 
 
                     let response = await modelCarrito.updateOne({userId: userId},{
@@ -88,7 +89,8 @@ class Contenedor {
                                                 description:description,
                                                 count:count,
                                                 image:image,
-                                                active:active}]
+                                                active:active,
+                                                cartUserId:cartUserId}]
                                           }
                                 }})
                     return ('se agrego un producto')
@@ -125,7 +127,7 @@ class Contenedor {
             }
     }
 
-    async deleteByID(ID, cartId, userId) {
+    async deleteByID(cartUserId, id) {
         const mongoose = require ('mongoose')
         const modelCarrito = require ('../models/modelCarrito')
 
@@ -136,51 +138,14 @@ class Contenedor {
                     })
 
         try {
-            let cart = await items.getByID(cartId)
-            
-            //aca deconstruyo el carrito para poder trabajar sobre los productos
-            let articulos = cart[0]
-            let articulosArr = articulos.itemsCart
-            //console.log(articulosArr)
-
-
-            const itemToDel = articulosArr.filter ((item) => item.id == ID);
-            //console.log(itemToDel)
-
-            if (itemToDel.length === 0) { 
-                console.log('no se ubico el producto a eliminar')
-            }else{
-                console.log('aca se eliminara el producto del carrito')
-                
-                //aca elimino el item del carrito
-                const resultado = articulosArr.filter ((item) => item.id !== ID)
-                //console.log(resultado)
-
-                //aca reconstruyo el carrito
-                const updatedCart = {userId, itemsCart : resultado}
-                //updatedCart.itemsCart.push(resultado)
-                console.log(updatedCart)
-
-                //aca busco el indice del carrito a actualizar
-                const index = productos.findIndex(item => item.userId === userId)
-                //console.log(index)
-
-                //aca reemplazo el carrito old por el updated
-                productos.splice (index, 1,updatedCart )
-                console.log(productos)
-
-                //aca escribo el cartcontainer con la nueva info
-                await fs.writeFile('./carrito.json', JSON.stringify(productos, null, 4), error =>{
-                        if(error){
-                        } else {
-                        console.log("carrito actualizado.")
-                        }
-                })
-                
-
+                const resultado = await modelCarrito.updateOne ({ userId: cartUserId },{
+                    $pull:{
+                        itemsCart:{id:id}
+                        }    
+                }) 
                 return resultado
-            }
-        } catch (error) {
+        
+        }catch (error) {
             console.error(`Error: ${error}`);
         }
     }
@@ -325,13 +290,11 @@ carritoMg.get('/:userID', async (req, res)=>{
     //console.log(userId)
     let itemsCart = await items.getByID(userId)
     let artsCart = itemsCart[0].itemsCart
-    console.log(artsCart)
+    //console.log(artsCart)
     let uno = JSON.stringify(artsCart)
-    console.log(uno)
+    //console.log(uno)
     let dos = JSON.parse(uno)
-    console.log(dos)
-
-    
+    //console.log(dos)
     //res.json(product)
     res.render('cart',{suggestedChamps: dos, listExists: true})
 })
@@ -341,6 +304,9 @@ carritoMg.post('/', async (req, res)=>{
 
   userId = req.session.passport.user
   cartItem = req.body
+  cartItem['cartUserId'] = userId
+  //console.log('aca se crea el item del cart')
+  //console.log(cartItem)
   cartId = {}
   cartId ['cartId'] = req.session.passport.user
 
@@ -348,7 +314,22 @@ carritoMg.post('/', async (req, res)=>{
   res.json({mensaje: 'Se creo un carrito'})
 })
 
+// PTO "E" aca la ruta a implementar es :cartId/productos/:id  Elimina un producto por idCart & ID de producto
+carritoMg.post('/:cartUserId/item/:id', async (req, res)=>{
+    console.log('esta ruta eliminara items del userCart')
 
+    //console.log(req.params)
+
+    let cartUserId = req.params.cartUserId
+    //console.log(cartUserId)
+    let id = req.params.id
+
+    let products = await items.deleteByID(cartUserId, id)
+    //console.log(product)
+    res.redirect('/carrito')
+})
+
+/*
 // PTO "B" vacia un carrito y lo elimina por cartId
 carritoMg.delete ('/:cartId', async (req, res)=>{
     cartId = JSON.parse(req.params.cartId)
@@ -361,9 +342,9 @@ carritoMg.delete ('/:cartId', async (req, res)=>{
     //res.json(products)
 
     res.json(product)
-})
+})*/
 
-
+/*
 // PTO "C" esta ruta lista todos los productos de un id de carrito  
 carritoMg.get ('/:cartId/' // '/:cartId/productos'
     , async (req, res)=>{
@@ -371,18 +352,7 @@ carritoMg.get ('/:cartId/' // '/:cartId/productos'
     //console.log(number)
     let product = await items.getByID(userId)
     res.json(product)
-})
-
-// PTO "E" aca la ruta a implementar es :cartId/productos/:id  Elimina un producto por idCart & ID de producto
-carritoMg.delete ("/:cartId/productos/:prodId", async (req, res)=>{
-    cartId = JSON.parse(req.params.cartId)
-    prodId = JSON.parse(req.params.prodId)
-    userId = JSON.parse(req.params.cartId)
-    //console.log(number)
-    let products = await items.deleteByID(prodId, cartId, userId)
-    //console.log(product)
-    res.json(products)
-})
+})*/
 
 /*
 // ------------ruta no implementada-----------

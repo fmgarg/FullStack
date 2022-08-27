@@ -162,7 +162,7 @@ let messages = []
 
 io.on('connection', (socket) => {
       //console.log('socket connection')
-      console.log(`socketId: ${socket.id}`)
+      //console.log(`socketId: ${socket.id}`)
       //console.log(User)
 
       socket.emit('socketUser', userAdmin)
