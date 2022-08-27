@@ -11,9 +11,9 @@ const User = require ('../models/modelUsers')
 const nombreArchivo = 'carrito.json'
 
 let productosNotParse = fs.readFileSync('./carrito.json', 'utf-8')
-//console.log(productosNotParse)
+
 let productos = JSON.parse(productosNotParse)
-//console.log(productos)
+
 
 
 const newObjeto = {
@@ -58,29 +58,16 @@ class Contenedor {
             try {
                 
                 let carritoExiste = await items.getByID (userId)
-                console.log(carritoExiste)
 
                 if (carritoExiste.length === 0){
                     let cart = {userId, itemsCart : []}
                     cart.itemsCart.push(cartItem)
-                    console.log('el carrito NO existe, SE CREA CON userID')//carritoExiste)
-                    //cart ["elementos"] = producto
-                    //console.log(cart)
-                    //productos.push(cart)
-                    //console.log(`el nuevo carrito tiene el id ${userId}`)
-                    
                     let response = await modelCarrito.insertMany(cart)
                     return response
 
-                    /*await fs.writeFile('./carrito.json', JSON.stringify(productos, null, 4), error =>{
-                            if(error){
-                            } else {
-                            console.log("se guardo un nuevo producto.")
-                            }
-                    })*/
                 }else {                
-                    console.log('el CART existe se agregan los items')
-                    console.log(cartItem)
+                    //console.log('el CART existe se agregan los items')
+                    //console.log(cartItem)
 
                     let id = cartItem['id']
                     let title = cartItem['title']
@@ -103,25 +90,8 @@ class Contenedor {
                                                 image:image,
                                                 active:active}]
                                           }
-                                }}
-                                                            )
+                                }})
                     return ('se agrego un producto')
-
-                    /*
-                    //--------traigo el carrito viejo----------
-                    const oldCart = await items.getByID (userId)
-                    console.log(oldCart.itemsCart)
-                    //--------creo el carrito actualizado con nuevo productos----------
-                    const updatedCart = oldCart[0]
-                    updatedCart.itemsCart.push (cartItem)
-                    console.log(updatedCart.itemsCart)
-                    
-                    //-----------busco el carrito por userId y le sumo el nuevo item/ producto----------
-                    const index = productos.findIndex(item => item.userId === userId)
-                    //console.log(index)
-                    productos.splice (index, 1,updatedCart )
-                    //console.log(productos)
-                    */
                 }                                                                        
         }
         catch (err) {
@@ -344,7 +314,6 @@ carritoMg.get ('/', async (req, res)=>{
         let userLoggedId = req.session.passport.user
         //console.log('estoy en ./carrito')
         res.redirect(`carrito/${userLoggedId}`)
-        //res.render('cart')//, {suggestedChamps: fakeApi(), listExists: true})
     }else{
         res.redirect('/login')
     }
@@ -352,15 +321,19 @@ carritoMg.get ('/', async (req, res)=>{
 
 carritoMg.get('/:userID', async (req, res)=>{
 
-    parametros = req.params.userID
-    console.log(parametros)
-    // let userFind = await User.findById (req.params.userID)
-    // console.log(userFind)
-    let userCart = 'faltan save + model + requiere' //Cart.findById(userFind)
-    //res.send('jajajaj')
-    //res.render('cart', { User })
-    let product = await items.getByID(parametros)
-    res.json(product)
+    userId = req.params.userID
+    //console.log(userId)
+    let itemsCart = await items.getByID(userId)
+    let artsCart = itemsCart[0].itemsCart
+    console.log(artsCart)
+    let uno = JSON.stringify(artsCart)
+    console.log(uno)
+    let dos = JSON.parse(uno)
+    console.log(dos)
+
+    
+    //res.json(product)
+    res.render('cart',{suggestedChamps: dos, listExists: true})
 })
 
 // PTO "A" y "D" es para crear un carrito, crear el cartId, y para agregar productos al carrito por su ID de producto.
