@@ -149,6 +149,7 @@ const randomsRouter = require ('./routes/randomsRouter')
 
 const productosMg = require ('./DAOs/productosMg')
 const carritoMg = require ('./DAOs/carritoMg')
+const ordenesMg = require ('./DAOs/ordenesMg')
 
 //---------------------------------SOCKETS-----------------------//
 const fs = require('fs');
@@ -392,14 +393,24 @@ if(MODO === 'CLUSTER' && cluster.isPrimary) {
                           ,productosMg);*/
         
         app.use('/carrito'
-                            ,async function (req, res, next) {          
-                              if (req.session.passport==undefined)
-                              {
-                                res.redirect('/login')
-                              } else {
-                                next ()
-                              }}
-                            ,carritoMg);
+                          ,async function (req, res, next) {          
+                            if (req.session.passport==undefined)
+                            {
+                              res.redirect('/login')
+                            } else {
+                              next ()
+                            }}
+                          ,carritoMg);
+
+        app.use('/orden'
+                        ,async function (req, res, next) {          
+                          if (req.session.passport==undefined)
+                          {
+                            res.redirect('/login')
+                          } else {
+                            next ()
+                          }}
+                        ,ordenesMg);
 
         //----METODO LOGOUT que destruye la sesion--------//
         app.get('/logout'
