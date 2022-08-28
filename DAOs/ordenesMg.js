@@ -6,6 +6,7 @@ const ordenesMg = express.Router ()
 const fs = require('fs');
 
 const mongoose = require ('mongoose');
+const modelCarrito = require('../models/modelCarrito');
 const modelOrden = require('../models/modelOrden');
 const User = require ('../models/modelUsers')
 
@@ -299,6 +300,8 @@ ordenesMg.get ('/', async (req, res)=>{
     console.log('estoy en ./orden/save')
     const mongoose = require ('mongoose')
     const modelOrden = require ('../models/modelOrden')
+    const modelCarrito = require ('../models/modelCarrito')
+
 
     const URL = process.env.MGATLAS//'mongodb://127.0.0.1:27017/ecommerce'
             let bddConnect = await mongoose.connect (URL, {
@@ -315,6 +318,7 @@ ordenesMg.get ('/', async (req, res)=>{
         console.log(itemsCart)
         console.log('se guarda newOrder antes de ir al render')
         let newOrder = await modelOrden.insertMany(itemsCart)
+        let delOldCart = await modelCarrito.deleteOne({userId: userLoggedId})
         
         
         
