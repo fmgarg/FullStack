@@ -1,1 +1,1 @@
-Desafio 14 se entrega el jueves
+El proyecto se encuentra en desarrollo y esta subido en: https://detitofullstackapp.herokuapp.com/ [https://detitofullstackapp.herokuapp.com/]
